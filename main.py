@@ -1,71 +1,84 @@
-import math
+# This is a sample Python script.
 
-area_circle_choice = 1
-circumference_choice = 2
-area_square_choice = 3
-exit_program = 4
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
-
-def area_circle(radius):
-    area = math.pi * radius ** 2
-    return area
-
-
-def circumference(radius):
-    circumference_circle = round(2 * math.pi * radius, 3)
-    return circumference_circle
+# linear search
+def linear_search(list, target):
+    """
+    returns the index positions of the target if found,else return none
+    """
+    for i in range(0, len(list)):
+        if list[i] == target:
+            return i
+    return None
 
 
-def rectangle(length, width):
-    perimeter_rectangle = round((2 * (length + width)), 3)
-    area_rectangle = length * width
-    return 'Perimeter is: ', perimeter_rectangle, 'Area is: ', area_rectangle
+# write a function called verify that accepts an index value if the value is not none print the index position if it is none inform target wasnt found in the list
+def verify(index):
+    if index is not None:
+        print("Target found at index:", index)
+    else:
+        print("Target not found at index")
 
 
-def show_menu():
-    print()
-    print('Welcome to Trigonometry')
-    print('\t Menu')
-    print('\t 1. Area of a circle')
-    print('\t 2. Circumference of a circle')
-    print('\t 3. Area and perimeter of a rectangle')
-    print('\t 4. Exit Program')
-    print()
+new_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = linear_search(new_array, 6)
+verify(result)
 
 
-def main():
-    option = 0
-
-    while option != exit_program:
-        show_menu()
-        option = int(input('Enter your choice: '))
-
-        if option == area_circle_choice:
-            radius = float(input('Enter the radius of the circle: '))
-            print('The area of the circle is:', area_circle(radius))
-        elif option == circumference_choice:
-            radius = float(input('Enter the radius of the circle: '))
-            print('The circumference of the circle is:', circumference(radius))
-        elif option == area_square_choice:
-            length = float(input('Enter the length of the rectangle: '))
-            width = float(input('Enter the width of the rectangle: '))
-            print(rectangle(length, width))
-        elif option == exit_program:
-            print('Exiting the program...')
+# binary search
+def binary_search(list, target):
+    first = 0
+    last = len(list) - 1
+    while first <= last:
+        mid = (first + last) // 2
+        if list[mid] == target:
+            return mid
+        elif list[mid] < target:
+            first = mid + 1
         else:
-            print('Invalid choice. Please enter a valid option.')
+            last = mid - 1
+
+    return None
 
 
-if __name__ == "__main__":
-    main()
+def verify(index):
+    if index is not None:
+        print("Target found at index:", index)
+    else:
+        print("Target not found at index")
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-#1. Modify the functions area_circle() and circumference() so that the radius is passed through
-#parameters.
-#2. Add one function to calculate the area and perimeter of a rectangle.Perimeter of a Rectangle = 2(a+b)
-#area of Rectangle = a × b
-#a. Function must use parameters.
-#b. Round to 3 decimal places
-#3. Add the rectangle (area and perimeter) option to the user menu.
+new_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = binary_search(new_array, 6)
+verify(result)
+
+
+# recursive binary search
+def recursive_binary_search(list, target):
+    if len(list) == 0:
+        return False
+    else:
+        mid = len(list) // 2
+
+        if list[mid] == target:
+            return True
+        else:
+            if list[mid] < target:
+                return recursive_binary_search(list[mid + 1:], target)
+            else:
+                return recursive_binary_search(list[:mid], target)
+
+
+def verify(result):
+    print("Target found at index:", result)
+
+
+new_array = [1, 2, 3, 4, 5, 6, 7, 8]
+result = recursive_binary_search(new_array, 12)
+verify(result)
+result = recursive_binary_search(new_array, 6)
+verify(result)
+
 
